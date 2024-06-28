@@ -18,11 +18,14 @@ const AuthModal = () => {
   const { onClose, isOpen } = useAuthModal();
 
   useEffect(() => {
+    console.log("Supabase Client: ", supabaseClient); // Log the Supabase client instance
+    console.log("Session: ", session); // Log the session object
+
     if (session) {
-      router.refresh();
-      onClose();
+      router.refresh(); // Optional: Refresh the page
+      onClose(); // Close the modal after successful login
     }
-  }, [session, router, onClose]);
+  }, [session, router, onClose, supabaseClient]);
 
   const onChange = (open: boolean) => {
     if (!open) {
@@ -35,7 +38,7 @@ const AuthModal = () => {
       title="Welcome Back"
       description="Login to your acoount"
       isOpen={isOpen}
-      onChange={() => {}}
+      onChange={onChange}
     >
       <Auth
         theme="dark"

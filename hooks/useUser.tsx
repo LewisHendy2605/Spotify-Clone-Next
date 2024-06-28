@@ -35,7 +35,7 @@ export const MyUserContextProvider = (props: Props) => {
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
   const getUserDetails = () => supabase.from("users").select("*").single();
-  const getSubscriptipn = () =>
+  const getSubscription = () =>
     supabase
       .from("subscriptions")
       .select("*, prices(*, products(*))")
@@ -46,17 +46,17 @@ export const MyUserContextProvider = (props: Props) => {
     if (user && !isLoadingData && !userDetails && !subscription) {
       setIsLoadingData(true);
 
-      Promise.allSettled([getUserDetails(), getSubscriptipn()]).then(
+      Promise.allSettled([getUserDetails(), getSubscription()]).then(
         (results) => {
-          const userDetaisPromise = results[0];
-          const sunscriptionPromise = results[1];
+          const userDetailsPromise = results[0];
+          const subscriptionPromise = results[1];
 
-          if (userDetaisPromise.status === "fulfilled") {
-            setUserDetails(userDetaisPromise.value.data as UserDetails);
+          if (userDetailsPromise.status === "fulfilled") {
+            setUserDetails(userDetailsPromise.value.data as UserDetails);
           }
 
-          if (sunscriptionPromise.status === "fulfilled") {
-            setSubscription(sunscriptionPromise.value.data as Subscription);
+          if (subscriptionPromise.status === "fulfilled") {
+            setSubscription(subscriptionPromise.value.data as Subscription);
           }
 
           setIsLoadingData(false);
