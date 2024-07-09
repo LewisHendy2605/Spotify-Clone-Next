@@ -18,9 +18,6 @@ const AuthModal = () => {
   const { onClose, isOpen } = useAuthModal();
 
   useEffect(() => {
-    console.log("Supabase Client: ", supabaseClient); // Log the Supabase client instance
-    console.log("Session: ", session); // Log the session object
-
     if (session) {
       router.refresh(); // Optional: Refresh the page
       onClose(); // Close the modal after successful login

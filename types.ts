@@ -25,7 +25,7 @@ export interface Product {
   name?: string;
   description?: string;
   image?: string;
-  matadata?: Stripe.Metadata;
+  metadata?: Stripe.Metadata;
 }
 
 export interface Price {
@@ -56,7 +56,7 @@ export interface Subscription {
   current_period_end: string;
   ended_at?: string;
   cancel_at?: string;
-  cancelled_at?: string;
+  canceled_at?: string;
   trial_start?: string;
   trial_end?: string;
   prices?: Price;
